@@ -8,6 +8,8 @@
 #	st = status -s
 	st = status
 
+	sw = switch
+	
 	cl = clone
 
 	cm = commit -m
