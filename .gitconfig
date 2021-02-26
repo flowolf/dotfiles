@@ -1,3 +1,5 @@
+[init]
+	defaultBranch = main
 [user]
 	# email = flowolf@example.com    # FIXXXXME
 	name = Florian Klien
