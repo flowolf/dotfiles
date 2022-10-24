@@ -39,6 +39,8 @@
 	lc  = "!f() { git ll "$1"^.."$1"; }; f"
 	lnc = log --pretty=format:"%h\\ %s\\ [%cn][%an]"
  	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+        # log release use like: git lr master..beta
+        lr = log --pretty=format:\"- %s\"
 
 	#list all aliases
 	la = "!git config -l | grep alias | cut -c 7-"
