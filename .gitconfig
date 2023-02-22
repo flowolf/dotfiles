@@ -101,7 +101,7 @@
 	ours = "!f() { git co --ours $@ && git add $@; }; f"
 	theirs = "!f() { git co --theirs $@ && git add $@; }; f"
 	logtree = log --graph --oneline --decorate --all --color
-	yolo = !git commit -m \"$(curl -s whatthecommit.com/index.txt)\"
+	yolo = !git commit -m \"$(curl -s https://whatthecommit.com/index.txt)\"
 
 [core]
 	editor = vim
