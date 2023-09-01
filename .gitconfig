@@ -2,7 +2,7 @@
 	defaultBranch = main
 [user]
 	# email = flowolf@example.com    # FIXXXXME
-	name = Florian Klien
+	# name = Florian Klien
 [alias]
 	ci = commit
 	wdiff = diff --color-words
@@ -33,6 +33,7 @@
 	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn][%an]%C(green)(%G?)" --decorate --numstat
 	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn][%an]%C(green)(%G?)" --decorate
 	lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn][%an]%C(green)(%G?)" --decorate --date=short
+	ldie = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cE][%aE]%C(green)(%G?)" --decorate --date=iso
 	ldi = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn][%an]%C(green)(%G?)" --decorate --date=iso
 	ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn][%an]%C(green)(%G?)" --decorate --date=relative
 	lg =  log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset%C(green)(%G?)%Creset' --abbrev-commit
@@ -46,6 +47,9 @@
 	la = "!git config -l | grep alias | cut -c 7-"
 	#diff = diff --word-diff
 	d = diff --word-diff --color-words
+	dis = diff --word-diff --color-words --ignore-space-change
+	disw = diff --word-diff --color-words=. --ignore-space-change
+	dw = diff --word-diff --color-words=.
 	dc = diff --cached
 	#list modified files in last commit
 	dl = "!git ll -1"
@@ -72,6 +76,8 @@
 	sl = stash list
 	sa = stash apply
 	ss = stash save
+	ssk = stash save --keep-index
+	ssu = stash save --include-untracked
 
 	cp = cherry-pick
 	grep = grep -Ii
@@ -97,14 +103,20 @@
 	lasttag = describe --tags --abbrev=0
 	lt = describe --tags --abbrev=0
 
-	#merges
+	#merge
 	ours = "!f() { git co --ours $@ && git add $@; }; f"
 	theirs = "!f() { git co --theirs $@ && git add $@; }; f"
 	logtree = log --graph --oneline --decorate --all --color
-	yolo = !git commit -m \"$(curl -s https://whatthecommit.com/index.txt)\"
+	ltd = log --oneline --graph --date=iso --pretty=format:'%Cred%h%Creset %Cgreen(%ad)%Creset%C(yellow)%d%Creset %s %Cblue[%cn - %an]%Creset' --abbrev-commit
+	yolo = !git commit -m \"$(curl -s whatthecommit.com/index.txt)\"
+
+	lab = "!lab"
+	lab-i = "!lab issue"
+	li = "!lab issue"
 
 [core]
 	editor = vim
 
 [push]
 	default = simple
+	autoSetupRemote = true
