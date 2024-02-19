@@ -90,6 +90,11 @@
 
 	#rename branch tree to done-
 	#done = "!f() { git branch | grep "$1" | cut -c 3- | grep -v done | xargs -I{} git branch -m {} done-{}; }; f"
+	recent = branch --sort=-committerdate --format=\"%(committerdate:relative)%09%(refname:short)\"
+	delete-merged-branches = !git branch --merged | grep -Ev '(main|master|beta|develop)' | xargs -prn1 git branch -d
+
+	oldest-ancestor = !bash -c 'diff -u <(git rev-list --first-parent \"${1:-main}\") <(git rev-list --first-parent \"${2:-HEAD}\") | sed -ne \"s/^ //p\" | head -1' -
+
 
 	#assume aliases
 	assume = update-index --assume-unchanged
